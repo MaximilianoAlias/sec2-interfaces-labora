@@ -8,6 +8,8 @@ import (
 func main() {
 	oc := ordenCreciente{}
 	pr := mostrarPrimos{}
+	tituloOc := tituloOc{}
+	tituloMP := tituloMP{}
 
 	var opcion int
 
@@ -29,8 +31,10 @@ func main() {
 			fmt.Println("**Resultado:**", numeroAleatorio)
 
 			if numeroAleatorio%2 == 0 {
+				fmt.Println("titulo: ", tituloOc.Title())
 				fmt.Println(oc.Next())
 			} else {
+				fmt.Println("titulo: ", tituloMP.Title())
 				fmt.Println(pr.Next())
 			}
 
@@ -48,10 +52,13 @@ func main() {
 
 type IntSequence interface {
 	Next() int
+	Title() string
 }
 
 type ordenCreciente struct{}
 type mostrarPrimos struct{}
+type tituloOc struct{}
+type tituloMP struct{}
 
 func (o ordenCreciente) Next() int {
 	i := 0
@@ -59,6 +66,14 @@ func (o ordenCreciente) Next() int {
 		fmt.Println(i)
 	}
 	return i
+}
+
+func (t tituloOc) Title() string {
+	return "Listado de numeros en Orden Creciente"
+}
+
+func (t tituloMP) Title() string {
+	return "Listado de numeros Primos"
 }
 
 func (mp mostrarPrimos) Next() int {
